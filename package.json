@@ -1,0 +1,21 @@
+{
+  "name": "express-sagas",
+  "version": "0.1.0",
+  "description": "",
+  "main": "braindump.js",
+  "scripts": {
+    "test": "mocha --recursive --compilers js:babel-core/register --require test/setup handlers/**/test.js"
+  },
+  "keywords": [],
+  "author": "Richard Foster <richard@rpf.me> (http://rpf.me)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "chai": "^3.5.0"
+  }
+}
