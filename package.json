@@ -4,7 +4,7 @@
   "description": "",
   "main": "braindump.js",
   "scripts": {
-    "test": "mocha --recursive --compilers js:babel-core/register --require test/setup handlers/**/test.js"
+    "test": "mocha --recursive --compilers js:babel-core/register --require test/setup createHandler/test.js handlers/**/test.js"
   },
   "keywords": [],
   "author": "Richard Foster <richard@rpf.me> (http://rpf.me)",
