@@ -1,4 +1,7 @@
-import cookie from './'
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import processTestApp from '../../test/processTestApp'
+import cookie, { handler as cookieHandler } from './'
 
 describe('handlers', function () {
   describe('cookie', function () {
@@ -21,6 +24,29 @@ describe('handlers', function () {
       it('should return a set cookie action when given a key, value, and options', function () {
         const action = { type: 'SET_COOKIE', key: 'test', value: '12345', options: { signed: true } }
         expect(cookie.set('test', '12345', { signed: true })).to.deep.equal(action)
+      })
+    })
+
+    describe('handler', function () {
+      describe('SET_COOKIE', function () {
+        it('should set a cookie when unsigned', function () {
+          const app = express().use(cookieParser('secret'))
+
+          return processTestApp(app, cookieHandler, function* (req, res) {
+            yield cookie.set('unsigned', '123')
+            expect(res._headers['set-cookie']).to.include('unsigned=123')
+          })
+        })
+
+        it('should set a signed cookie when signed is true', function () {
+          const app = express().use(cookieParser('secret'))
+
+          return processTestApp(app, cookieHandler, function* (req, res) {
+            yield cookie.set('signed', '456', { signed: true })
+            const signed = 'signed=s%3A456.0ysdNf0RXEpJbgb9jfZ%2B7YBXaIsXFAos7zZcsjWBcQI; Path=/'
+            expect(res._headers['set-cookie']).to.include(signed)
+          })
+        })
       })
     })
   })
