@@ -1,19 +1,17 @@
-import createHandler from '../../createHandler'
+const createHandler = require('../../createHandler')
 
-export const SET_COOKIE = 'SET_COOKIE'
-export const GET_COOKIE = 'GET_COOKIE'
+const SET_COOKIE = exports.SET_COOKIE = 'SET_COOKIE'
+const GET_COOKIE = exports.GET_COOKIE = 'GET_COOKIE'
 
-export default {
-  get (key, options = {}) {
-    return { type: GET_COOKIE, key, options }
-  },
-
-  set (key, value, options = {}) {
-    return { type: SET_COOKIE, key, value, options }
-  }
+exports.get = function (key, options = {}) {
+  return { type: GET_COOKIE, key, options }
 }
 
-export const handler = createHandler({
+exports.set = function (key, value, options = {}) {
+  return { type: SET_COOKIE, key, value, options }
+}
+
+exports.handler = createHandler({
   [GET_COOKIE] (action, req, res) {
     if (action.options.signed) {
       return res.signedCookies[action.key]

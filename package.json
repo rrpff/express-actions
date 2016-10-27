@@ -4,18 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --compilers js:babel-core/register --require test/setup createHandler/test.js handlers/**/test.js"
+    "test": "mocha --recursive --compilers js:async-to-gen/register --require test/setup createHandler/test.js handlers/**/test.js"
   },
   "keywords": [],
   "author": "Richard Foster <richard@rpf.me> (http://rpf.me)",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.18.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-0": "^6.16.0",
+    "async-to-gen": "^1.1.4",
     "chai": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",

@@ -1,4 +1,4 @@
-export function saga (handler, routeAction) {
+exports.saga = function (handler, routeAction) {
   return function (req, res, next) {
     const generator = routeAction(req, res)
 
@@ -11,7 +11,7 @@ export function saga (handler, routeAction) {
     }
 
     step(generator)
-      .then(::res.end)
+      .then(() => res.end())
       .catch(next)
   }
 }

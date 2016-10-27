@@ -1,4 +1,4 @@
-import createHandler from './'
+const createHandler = require('./')
 
 describe('createHandler', function () {
   const handler = createHandler({

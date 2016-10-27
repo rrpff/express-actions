@@ -1,4 +1,4 @@
-export default function createHandler (handlers) {
+module.exports = function createHandler (handlers) {
   return {
     async run (action, ...args) {
       const handler = handlers[action.type]

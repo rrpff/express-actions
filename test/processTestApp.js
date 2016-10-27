@@ -1,8 +1,8 @@
-import http from 'http'
-import { Test as MockRequest } from 'supertest'
-import { saga } from '../'
+const http = require('http')
+const MockRequest = require('supertest').Test
+const { saga } = require('../')
 
-export default function processTestApp (app, handler, scenario) {
+module.exports = function processTestApp (app, handler, scenario) {
   app.use(saga(handler, scenario))
 
   return new Promise(function (accept, reject) {

@@ -1,7 +1,7 @@
-import express from 'express'
-import cookieParser from 'cookie-parser'
-import processTestApp from '../../test/processTestApp'
-import cookie, { handler as cookieHandler } from './'
+const express = require('express')
+const cookieParser = require('cookie-parser')
+const processTestApp = require('../../test/processTestApp')
+const cookie = require('./')
 
 describe('handlers', function () {
   describe('cookie', function () {
@@ -32,7 +32,7 @@ describe('handlers', function () {
         it('should set a cookie when unsigned', function () {
           const app = express().use(cookieParser('secret'))
 
-          return processTestApp(app, cookieHandler, function* (req, res) {
+          return processTestApp(app, cookie.handler, function* (req, res) {
             yield cookie.set('unsigned', '123')
             expect(res._headers['set-cookie']).to.include('unsigned=123')
           })
@@ -41,7 +41,7 @@ describe('handlers', function () {
         it('should set a signed cookie when signed is true', function () {
           const app = express().use(cookieParser('secret'))
 
-          return processTestApp(app, cookieHandler, function* (req, res) {
+          return processTestApp(app, cookie.handler, function* (req, res) {
             yield cookie.set('signed', '456', { signed: true })
             const signed = 'signed=s%3A456.0ysdNf0RXEpJbgb9jfZ%2B7YBXaIsXFAos7zZcsjWBcQI; Path=/'
             expect(res._headers['set-cookie']).to.include(signed)
